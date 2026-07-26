@@ -243,6 +243,117 @@ header.scrolled .brand-icon-dark{opacity:1;}
 .nav-links a:hover,.nav-links a:focus-visible{opacity:1;color:var(--gold-soft);}
 .nav-links a:hover::after,.nav-links a:focus-visible::after{left:0;right:0;}
 .nav-links a.active::after{left:0;right:0;}
+
+/* ===== RETREATS MEGA MENU ===== */
+.nav-item-mega{position:relative;}
+.nav-link-trigger{
+  display:flex;align-items:center;gap:5px;background:none;border:none;cursor:pointer;
+  position:relative;font-size:13px;font-family:var(--sans);color:#fff;opacity:.96;padding-bottom:4px;
+  transition:color .25s ease-out,opacity .25s ease-out;
+}
+.nav-link-trigger::after{
+  content:'';position:absolute;left:50%;right:50%;bottom:0;height:1px;background:var(--gold-soft);
+  transition:left .25s ease-out,right .25s ease-out;
+}
+.nav-link-trigger:hover,.nav-link-trigger:focus-visible,.nav-link-trigger[aria-expanded="true"]{opacity:1;color:var(--gold-soft);}
+.nav-link-trigger:hover::after,.nav-link-trigger:focus-visible::after,.nav-link-trigger[aria-expanded="true"]::after{left:0;right:0;}
+.nav-caret{width:11px;height:11px;transition:transform .25s var(--ease);}
+.nav-link-trigger[aria-expanded="true"] .nav-caret{transform:rotate(180deg);}
+header.scrolled .nav-link-trigger{color:var(--ink);}
+
+.mega-menu{
+  position:fixed;left:0;right:0;top:var(--header-h,116px);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transform:translateY(0);transition:opacity .22s ease-out,transform .22s ease-out,visibility 0s linear .22s;
+  z-index:450;
+}
+.nav-item-mega.mega-open .mega-menu{
+  opacity:1;visibility:visible;pointer-events:auto;transform:translateY(12px);
+  transition:opacity .22s ease-out,transform .22s ease-out,visibility 0s linear 0s;
+}
+.mega-inner{
+  max-width:1180px;margin:0 auto;background:var(--ivory-soft);border-radius:20px;
+  box-shadow:0 40px 80px -30px rgba(20,18,14,0.35);border:1px solid rgba(42,38,32,0.06);
+  padding:40px 48px 36px;
+}
+.mega-head{margin-bottom:28px;}
+.mega-title{font-family:var(--serif);font-size:32px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;}
+.mega-cols{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:56px;padding-bottom:32px;}
+.mega-col-heading{
+  display:block;font-size:15px;text-transform:uppercase;letter-spacing:1.5px;
+  opacity:.6;color:var(--ink);font-weight:600;margin-bottom:14px;
+}
+.mega-col-sub{font-size:13.5px;color:var(--ink-soft);line-height:1.5;margin-bottom:20px;max-width:70ch;}
+
+/* Column 1 — goal list */
+.mega-goal-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px;}
+.mega-goal{
+  display:flex;align-items:center;gap:12px;width:100%;background:none;border:none;cursor:pointer;
+  text-align:left;padding:11px 12px;border-radius:10px;border-left:2px solid transparent;
+  font-size:15px;color:var(--ink);font-family:var(--sans);font-weight:400;
+  transition:background-color .2s ease-out,border-color .2s ease-out,font-weight .2s ease-out;
+}
+.mega-goal .icon{width:18px;height:18px;color:var(--ink-soft);flex-shrink:0;transition:color .2s ease-out;}
+.mega-goal:hover,.mega-goal:focus-visible,.mega-goal.active{
+  background:var(--sage-bg);border-left-color:var(--gold);font-weight:500;
+}
+.mega-goal:hover .icon,.mega-goal:focus-visible .icon,.mega-goal.active .icon{color:var(--gold-text);}
+
+/* Column 2 — recommended journey */
+.mega-journey-top{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+.mega-journey-name{font-family:var(--sans);font-size:22px;font-weight:500;color:var(--ink);}
+.mega-journey-badge{
+  font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-text);
+  background:var(--gold-soft2,rgba(176,141,70,0.14));padding:4px 10px;border-radius:999px;
+}
+.mega-journey-days{font-size:13px;color:var(--ink-soft);margin-bottom:14px;}
+.mega-journey-desc{font-size:15px;line-height:1.6;color:var(--ink-soft);margin-bottom:18px;max-width:70ch;}
+.mega-journey-includes-label{display:block;font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;font-weight:600;color:var(--ink);opacity:.7;margin-bottom:10px;}
+.mega-journey-includes{list-style:none;margin:0 0 22px;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;}
+.mega-journey-includes li{display:flex;align-items:center;gap:7px;font-size:13.5px;color:var(--ink-soft);}
+.mega-journey-includes li .icon{width:14px;height:14px;color:var(--gold-text);flex-shrink:0;}
+.mega-journey-cta{
+  display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--gold-text);
+}
+.mega-journey-cta .btn-arrow{width:15px;height:15px;transition:transform .18s ease-out;}
+.mega-journey-cta:hover .btn-arrow{transform:translateX(4px);}
+#megaJourney{transition:opacity .25s ease-out,transform .25s ease-out;}
+#megaJourney.mega-fading{opacity:0;transform:translateY(6px);}
+
+/* Column 3 — editorial feature */
+.mega-feature-image{
+  width:100%;aspect-ratio:420/320;border-radius:20px;overflow:hidden;margin-bottom:18px;
+  background:var(--sage-bg);position:relative;
+}
+.mega-feature-image img{
+  width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;
+  opacity:1;transition:opacity .25s ease-out;
+}
+.mega-feature-image img.mega-fading{opacity:0;}
+.mega-feature-title{font-family:var(--serif);font-size:19px;font-weight:600;color:var(--ink);margin-bottom:8px;}
+.mega-feature-desc{font-size:13.5px;line-height:1.55;color:var(--ink-soft);margin-bottom:12px;}
+.mega-feature-link{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:var(--ink);}
+.mega-feature-link .btn-arrow{width:14px;height:14px;transition:transform .18s ease-out;}
+.mega-feature-link:hover .btn-arrow{transform:translateX(4px);}
+
+/* Bottom CTA panel — shared component, subtle sage tint */
+.mega-bottom-panel{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  border-top:1px solid rgba(42,38,32,0.08);padding-top:24px;background:var(--sage-bg);
+  margin:0 -48px -36px;padding:24px 48px;border-radius:0 0 20px 20px;
+  transition:background-color .2s ease-out;
+}
+.mega-bottom-panel:hover{background:#E4DFCB;}
+.mega-bottom-text{display:flex;flex-direction:column;gap:4px;}
+.mega-bottom-text strong{font-size:15px;font-weight:600;color:var(--ink);}
+.mega-bottom-text span{font-size:13.5px;color:var(--ink-soft);}
+.mega-bottom-cta{transition:transform .18s ease-out,box-shadow .18s ease-out;}
+.mega-bottom-cta:hover{transform:translateY(-2px);}
+
+@media(min-width:981px){
+  .mega-menu{display:block;}
+}
+
 .nav-cta{display:flex;align-items:center;gap:22px;}
 .nav-lang{
   display:flex;align-items:center;gap:6px;font-size:13.5px;color:#fff;
@@ -268,12 +379,37 @@ header.scrolled .nav-toggle{color:var(--ink);}
     background:var(--ivory-soft);padding:100px 32px 32px;
     transform:translateX(100%);transition:transform .5s var(--ease);
     box-shadow:-20px 0 50px -20px rgba(0,0,0,0.15);
-    z-index:501;
+    z-index:501;overflow-y:auto;-webkit-overflow-scrolling:touch;
   }
   .nav-links.open{transform:translateX(0);}
   .nav-links a{width:100%;padding:16px 0;border-bottom:1px solid var(--line);font-size:16px;color:var(--ink)!important;opacity:1;}
   .nav-toggle{display:flex;}
   .nav-lang{display:none;}
+
+  /* Retreats accordion (mobile fallback — no mega menu on mobile/tablet) */
+  .nav-item-mega{width:100%;position:static;}
+  .nav-link-trigger{
+    width:100%;padding:16px 0;border-bottom:1px solid var(--line);
+    font-size:16px;color:var(--ink)!important;opacity:1;justify-content:space-between;
+  }
+  .nav-link-trigger::after{display:none;}
+  .mega-menu{
+    position:static;opacity:1;visibility:visible;pointer-events:auto;
+    transform:none;transition:none;z-index:auto;
+    max-height:0;overflow:hidden;
+  }
+  .nav-item-mega.mega-open .mega-menu{max-height:1400px;transition:max-height .35s var(--ease);}
+  .mega-inner{max-width:none;background:none;border-radius:0;box-shadow:none;border:none;padding:4px 0 12px;}
+  .mega-head{display:none;}
+  .mega-cols{display:block;gap:0;padding-bottom:0;}
+  .mega-col-2,.mega-col-3{display:none;}
+  .mega-col-1 .mega-col-sub{margin-bottom:14px;}
+  .mega-goal{padding:12px 10px;font-size:15px;}
+  .mega-bottom-panel{
+    display:flex;flex-direction:column;align-items:flex-start;gap:14px;
+    margin:16px 0 0;padding:18px;border-radius:14px;border-top:none;
+  }
+  .mega-bottom-cta{width:100%;box-sizing:border-box;text-align:center;justify-content:center;}
   .nav-links-close{
     display:flex;align-items:center;justify-content:center;
     position:absolute;top:26px;right:28px;width:36px;height:36px;
@@ -1741,7 +1877,80 @@ footer{background:var(--olive);color:rgba(246,240,227,0.75);padding:80px 0 32px;
         <svg class="icon"><use href="#icon-close"/></svg>
       </button>
       <a href="#doctors">About</a>
-      <a href="retreats.html">Retreats</a>
+
+      <div class="nav-item nav-item-mega" id="navRetreatsItem">
+        <button class="nav-link-trigger" id="retreatsTrigger" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="retreatsMegaMenu">
+          <span>Retreats</span>
+          <svg class="icon nav-caret" aria-hidden="true"><use href="#icon-chevron-down"/></svg>
+        </button>
+
+        <div class="mega-menu" id="retreatsMegaMenu">
+          <div class="mega-inner">
+            <div class="mega-head">
+              <span class="mega-title">Retreats</span>
+            </div>
+
+            <div class="mega-cols">
+              <!-- Column 1 — Find a Retreat -->
+              <div class="mega-col mega-col-1">
+                <span class="mega-col-heading">Find a Retreat</span>
+                <p class="mega-col-sub">Choose the health goal you'd like to focus on.</p>
+                <ul class="mega-goal-list" role="list">
+                  <li><button type="button" class="mega-goal" data-mega-goal="panchakarma" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#icon-lotus"/></svg><span>Panchakarma</span></button></li>
+                  <li><button type="button" class="mega-goal active" data-mega-goal="stress" aria-pressed="true"><svg class="icon" aria-hidden="true"><use href="#icon-leaf"/></svg><span>Stress Recovery</span></button></li>
+                  <li><button type="button" class="mega-goal" data-mega-goal="detox" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#icon-sprout"/></svg><span>Detox &amp; Regeneration</span></button></li>
+                  <li><button type="button" class="mega-goal" data-mega-goal="women" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#icon-heart"/></svg><span>Women's Wellness</span></button></li>
+                  <li><button type="button" class="mega-goal" data-mega-goal="sleep" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#icon-moon"/></svg><span>Better Sleep</span></button></li>
+                  <li><button type="button" class="mega-goal" data-mega-goal="ageing" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#icon-shield"/></svg><span>Healthy Ageing</span></button></li>
+                </ul>
+              </div>
+
+              <!-- Column 2 — Recommended Journey (updates with column 1 hover) -->
+              <div class="mega-col mega-col-2">
+                <span class="mega-col-heading">Recommended Journey</span>
+                <div class="mega-journey" id="megaJourney">
+                  <div class="mega-journey-top">
+                    <h4 class="mega-journey-name" id="megaJourneyName">Stress Recovery Retreat</h4>
+                    <span class="mega-journey-badge" id="megaJourneyBadge">Most Popular</span>
+                  </div>
+                  <p class="mega-journey-days" id="megaJourneyDays">7 or 14 Days</p>
+                  <p class="mega-journey-desc" id="megaJourneyDesc">Designed for individuals experiencing stress, fatigue, burnout, or emotional exhaustion. This personalised retreat combines Ayurvedic consultations, traditional therapies, nourishing meals, and restorative practices to help you regain balance and energy.</p>
+                  <span class="mega-journey-includes-label">What's Included</span>
+                  <ul class="mega-journey-includes" id="megaJourneyIncludes">
+                    <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Personal Ayurvedic Consultation</li>
+                    <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Daily Therapies</li>
+                    <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Herbal Medicines</li>
+                    <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Personalised Meal Plan</li>
+                    <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Yoga &amp; Meditation</li>
+                    <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Follow-up Guidance</li>
+                  </ul>
+                  <a href="retreats.html" class="mega-journey-cta">Explore Retreat <svg class="icon btn-arrow" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+                </div>
+              </div>
+
+              <!-- Column 3 — Editorial Feature (image swaps with column 1 hover) -->
+              <div class="mega-col mega-col-3">
+                <span class="mega-col-heading">Featured Retreat</span>
+                <div class="mega-feature-image">
+                  <img src="images/team-photo.png" alt="Doctor and guest in quiet conversation, part of a personalised retreat" id="megaFeatureImg">
+                </div>
+                <h4 class="mega-feature-title">Reconnect with Yourself</h4>
+                <p class="mega-feature-desc">Every healing journey begins with understanding. Our doctors take time to understand your health, lifestyle, and goals before recommending a personalised retreat designed specifically for you.</p>
+                <a href="retreats.html" class="mega-feature-link">How Our Retreats Work <svg class="icon btn-arrow" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+              </div>
+            </div>
+
+            <div class="mega-bottom-panel">
+              <div class="mega-bottom-text">
+                <strong>Not sure which retreat is right for you?</strong>
+                <span>Our doctors will recommend the most suitable retreat based on your health goals, medical history, and lifestyle.</span>
+              </div>
+              <a href="#invite" class="btn btn-gold mega-bottom-cta">Book a Consultation</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <a href="#options">Treatments</a>
       <a href="#options">Courses</a>
       <a href="#visit">Contact</a>
@@ -2975,6 +3184,149 @@ navToggle.addEventListener('click', ()=>{
 if(navLinksClose) navLinksClose.addEventListener('click', closeNavMenu);
 if(navBackdrop) navBackdrop.addEventListener('click', closeNavMenu);
 navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeNavMenu));
+
+// ===== Retreats mega menu =====
+{
+  const megaData = {
+    panchakarma:{
+      name:'Panchakarma Retreat',badge:'Deep Cleansing',days:'14 Days',
+      desc:'Our signature detox and rejuvenation programme, built entirely around your health. A guided Panchakarma protocol combining traditional therapies, herbal medicines, and a personalised diet to reset the body from within.',
+      includes:['Personal Ayurvedic Consultation','Daily Panchakarma Therapies','Herbal Medicines','Personalised Meal Plan','Yoga &amp; Meditation','Follow-up Guidance'],
+      img:'images/Living the Retreat.png'
+    },
+    stress:{
+      name:'Stress Recovery Retreat',badge:'Most Popular',days:'7 or 14 Days',
+      desc:'Designed for individuals experiencing stress, fatigue, burnout, or emotional exhaustion. This personalised retreat combines Ayurvedic consultations, traditional therapies, nourishing meals, and restorative practices to help you regain balance and energy.',
+      includes:['Personal Ayurvedic Consultation','Daily Therapies','Herbal Medicines','Personalised Meal Plan','Yoga &amp; Meditation','Follow-up Guidance'],
+      img:'images/team-photo.png'
+    },
+    detox:{
+      name:'Detox & Regeneration Retreat',badge:'Full Reset',days:'10 or 14 Days',
+      desc:'A deep, guided reset for chronic concerns or a lifestyle in need of change. Every protocol is personalised and built entirely around the person in front of us — not a fixed package.',
+      includes:['Personal Ayurvedic Consultation','Guided Detox Therapies','Herbal Medicines','Personalised Meal Plan','Yoga &amp; Meditation','Follow-up Guidance'],
+      img:'images/Returning Home.png'
+    },
+    women:{
+      name:"Women's Wellness Retreat",badge:'For Every Stage',days:'7 or 10 Days',
+      desc:'Compassionate, personalised care addressing hormonal balance, cycle health, and the transitions unique to women at every stage of life, guided by a Kerala-trained therapist.',
+      includes:['Personal Ayurvedic Consultation','Daily Therapies','Herbal Medicines','Personalised Meal Plan','Yoga &amp; Meditation','Follow-up Guidance'],
+      img:'images/hj-Personalised Therapies.png'
+    },
+    sleep:{
+      name:'Restorative Sleep Retreat',badge:'Calm & Rest',days:'7 Days',
+      desc:'A gentle, personalised approach to help your body and mind wind down naturally. We look at diet, stress, and daily rhythm together to address the root causes of restless sleep.',
+      includes:['Personal Ayurvedic Consultation','Daily Therapies','Herbal Medicines','Personalised Meal Plan','Evening Wind-down Rituals','Follow-up Guidance'],
+      img:'images/Arriving.png'
+    },
+    ageing:{
+      name:'Healthy Ageing Retreat',badge:'Long-Term Vitality',days:'10 or 14 Days',
+      desc:'Supporting long-term vitality, mobility, and resilience through authentic Ayurvedic care tailored to your stage of life — because the goal isn\'t simply adding years, it\'s enjoying them.',
+      includes:['Personal Ayurvedic Consultation','Daily Therapies','Herbal Medicines','Personalised Meal Plan','Yoga &amp; Meditation','Follow-up Guidance'],
+      img:'images/Healing Retreats.png'
+    }
+  };
+
+  const megaItem = document.getElementById('navRetreatsItem');
+  const megaTrigger = document.getElementById('retreatsTrigger');
+  const megaMenu = document.getElementById('retreatsMegaMenu');
+  const megaGoals = document.querySelectorAll('.mega-goal');
+  const megaJourney = document.getElementById('megaJourney');
+  const megaFeatureImg = document.getElementById('megaFeatureImg');
+
+  if(megaItem && megaTrigger && megaMenu){
+    let openTimer = null, closeTimer = null;
+
+    const openMega = ()=>{
+      clearTimeout(closeTimer);
+      openTimer = setTimeout(()=>{
+        megaItem.classList.add('mega-open');
+        megaTrigger.setAttribute('aria-expanded','true');
+      }, 150);
+    };
+    const closeMega = ()=>{
+      clearTimeout(openTimer);
+      closeTimer = setTimeout(()=>{
+        megaItem.classList.remove('mega-open');
+        megaTrigger.setAttribute('aria-expanded','false');
+      }, 120);
+    };
+    const toggleMega = ()=>{
+      const isOpen = megaItem.classList.toggle('mega-open');
+      megaTrigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    };
+
+    // Desktop: hover to open/close
+    megaItem.addEventListener('mouseenter', ()=>{ if(window.innerWidth >= 981) openMega(); });
+    megaItem.addEventListener('mouseleave', ()=>{ if(window.innerWidth >= 981) closeMega(); });
+
+    // Trigger click: toggles on touch/mobile, also works as keyboard-accessible open on desktop
+    megaTrigger.addEventListener('click', (e)=>{
+      if(window.innerWidth >= 981){
+        e.preventDefault();
+        toggleMega();
+      } else {
+        e.preventDefault();
+        toggleMega();
+      }
+    });
+
+    // Close on outside click / Escape
+    document.addEventListener('click', (e)=>{
+      if(!megaItem.contains(e.target)) megaItem.classList.remove('mega-open');
+    });
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){
+        megaItem.classList.remove('mega-open');
+        megaTrigger.setAttribute('aria-expanded','false');
+      }
+    });
+
+    const updateMega = (key)=>{
+      const data = megaData[key];
+      if(!data) return;
+      megaGoals.forEach(g=>{
+        const isActive = g.dataset.megaGoal === key;
+        g.classList.toggle('active', isActive);
+        g.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+      if(megaJourney) megaJourney.classList.add('mega-fading');
+      if(megaFeatureImg) megaFeatureImg.classList.add('mega-fading');
+      setTimeout(()=>{
+        const nameEl = document.getElementById('megaJourneyName');
+        const badgeEl = document.getElementById('megaJourneyBadge');
+        const daysEl = document.getElementById('megaJourneyDays');
+        const descEl = document.getElementById('megaJourneyDesc');
+        const includesEl = document.getElementById('megaJourneyIncludes');
+        if(nameEl) nameEl.textContent = data.name;
+        if(badgeEl) badgeEl.textContent = data.badge;
+        if(daysEl) daysEl.textContent = data.days;
+        if(descEl) descEl.textContent = data.desc;
+        if(includesEl){
+          includesEl.innerHTML = data.includes.map(item=>`<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>${item}</li>`).join('');
+        }
+        if(megaFeatureImg) megaFeatureImg.setAttribute('src', data.img);
+        if(megaJourney) megaJourney.classList.remove('mega-fading');
+        if(megaFeatureImg) megaFeatureImg.classList.remove('mega-fading');
+      }, 150);
+    };
+
+    megaGoals.forEach(goal=>{
+      goal.addEventListener('mouseenter', ()=>{
+        if(window.innerWidth >= 981) updateMega(goal.dataset.megaGoal);
+      });
+      goal.addEventListener('focus', ()=>{
+        if(window.innerWidth >= 981) updateMega(goal.dataset.megaGoal);
+      });
+      goal.addEventListener('click', ()=>{
+        if(window.innerWidth >= 981){
+          updateMega(goal.dataset.megaGoal);
+        } else {
+          window.location.href = 'retreats.html';
+        }
+      });
+    });
+  }
+}
 
 // FAQ accordion (mouse + keyboard accessible)
 document.querySelectorAll('.faq-item').forEach(item=>{
