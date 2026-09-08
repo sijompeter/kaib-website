@@ -243,6 +243,8 @@ header.scrolled .brand-icon-dark{opacity:1;}
 .nav-links a:hover,.nav-links a:focus-visible{opacity:1;color:var(--gold-soft);}
 .nav-links a:hover::after,.nav-links a:focus-visible::after{left:0;right:0;}
 .nav-links a.active::after{left:0;right:0;}
+.nav-link-campaign{display:inline-flex;align-items:center;gap:7px;}
+.nav-campaign-dot{width:5px;height:5px;border-radius:50%;background:var(--gold-soft);flex-shrink:0;}
 
 /* ===== RETREATS MEGA MENU ===== */
 .nav-item-mega{position:relative;}
@@ -1953,6 +1955,7 @@ footer{background:var(--olive);color:rgba(246,240,227,0.75);padding:80px 0 32px;
 
       <a href="#options">Treatments</a>
       <a href="#options">Courses</a>
+      <a href="september-retreat.html" class="nav-link-campaign" onclick="if(typeof trackEvent==='function')trackEvent('september_retreat_nav_click');">September Retreat<span class="nav-campaign-dot" aria-hidden="true"></span></a>
       <a href="#visit">Contact</a>
     </nav>
     <div class="nav-backdrop" id="navBackdrop"></div>
