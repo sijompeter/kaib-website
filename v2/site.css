@@ -676,3 +676,6 @@ a:hover .ph.zoom,.card:hover .ph.zoom{transform:scale(1.02)}
 }
 @media (max-width:1080px){.tc-grid{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:600px){.tc-grid{grid-template-columns:1fr;gap:40px}.tc-media{aspect-ratio:4/3.4}.tc-name{font-size:22px}}
+/* round 7: treatment photos */
+.tc-media img{object-position:50% 35%}
+@media (max-width:600px){.tc-media{aspect-ratio:1/1.08}}
