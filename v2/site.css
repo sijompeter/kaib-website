@@ -598,3 +598,81 @@ a:hover .ph.zoom,.card:hover .ph.zoom{transform:scale(1.02)}
   .card .hook-img{margin:-8px -8px 6px}
   .ph.illo{min-height:0!important;aspect-ratio:1000/907}
 }
+
+/* ---------- round 6 ---------- */
+/* cut-out portraits: flush to left, right and bottom; room only at the top */
+.photo.cut{min-height:0!important;height:auto!important;aspect-ratio:var(--ar);align-self:end}
+.photo.cut > img{inset:auto 0 0 0!important;top:auto!important;left:0!important;transform:none!important;width:100%!important;height:auto!important;max-width:none;object-fit:fill}
+.photo.cut::after,.arch.photo.cut::after{display:none}
+.hero-visual:has(.arch.cut){height:auto}
+.arch.photo.cut{position:relative;margin-left:auto;height:auto}
+.cut-narrow{width:100%;max-width:460px;justify-self:center}
+/* video thumbnails: original colours, play button always on top */
+.vid > img{z-index:0}
+.vid::after{display:none}
+.vid .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;box-shadow:0 8px 24px -8px rgba(13,38,33,.45)}
+.vid:hover .play{transform:translate(-50%,-50%) scale(1.1)}
+/* courses: Safari needs an explicit width for aspect-ratio boxes in grids */
+.ph.illo,.ph.course-img{width:100%}
+/* treatments grid */
+.tc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px 22px}
+.tc{position:relative;display:flex;flex-direction:column}
+.tc[hidden]{display:none}
+.tc-media{position:relative;aspect-ratio:4/5;border-radius:var(--r-md);overflow:hidden;background:linear-gradient(160deg,#2F6E5C,#0F2E27)}
+.tc-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.tc-ph{display:none}
+.tc-media.noimg .tc-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:rgba(255,255,255,.85);text-align:center;padding:24px}
+.tc-ph svg{width:40px;height:40px;color:var(--mint)}
+.tc-ph i{font-family:"Instrument Serif",serif;font-size:30px;line-height:1.1}
+.tc-num{position:absolute;top:14px;left:14px;font-size:12.5px;font-weight:500;letter-spacing:.06em;color:var(--deep);background:rgba(255,255,255,.88);backdrop-filter:blur(6px);padding:6px 10px;border-radius:999px}
+.tc-info{display:flex;flex-direction:column;gap:6px;padding:18px 4px 0}
+.tc-name{font-size:23px;font-weight:500;letter-spacing:-.02em;line-height:1.15}
+.tc-sub{color:var(--muted);font-size:15.5px}
+.tc-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.tc-meta .pill{font-size:13.5px;padding:6px 12px}
+.tc-meta .pill.price{background:var(--deep);color:#fff}
+.tc-meta .pill.muted{background:transparent;border:1px dashed var(--line);color:var(--muted);font-weight:400}
+.tc-more{margin-top:12px;align-self:flex-start;display:inline-flex;align-items:center;gap:10px;height:42px;padding:0 8px 0 18px;border-radius:999px;border:1px solid var(--line);background:#fff;font:inherit;font-size:14.5px;font-weight:500;color:var(--ink);cursor:pointer;transition:.35s var(--ease)}
+.tc-more span{width:28px;height:28px;border-radius:50%;background:var(--tint);display:grid;place-items:center;transition:.35s var(--ease)}
+.tc-more svg{width:13px;height:13px;transition:transform .35s var(--ease)}
+.tc-more:hover{border-color:var(--deep)}
+.tc.open .tc-more{background:var(--deep);color:#fff;border-color:var(--deep)}
+.tc.open .tc-more span{background:rgba(255,255,255,.15)}
+.tc.open .tc-more svg{transform:rotate(45deg)}
+.tc-rname{display:none}
+.tc-desc ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:7px}
+.tc-desc .tx-tags{margin-top:14px}
+.tc-cta{display:flex;flex-direction:column;align-items:flex-start;gap:12px;margin-top:18px}
+.tc-cta .btn{white-space:normal}
+/* desktop with a mouse: details slide up over the photo on hover */
+@media (hover:hover) and (min-width:761px){
+  .tc-reveal{position:absolute;top:0;left:0;right:0;aspect-ratio:4/5;border-radius:var(--r-md);overflow:hidden;z-index:3;pointer-events:none;
+    clip-path:inset(100% 0 0 0 round var(--r-md));transition:clip-path .6s var(--ease)}
+  .tc-rin{position:absolute;inset:0;overflow:auto;padding:24px 24px 22px;display:flex;flex-direction:column;justify-content:flex-end;color:rgba(255,255,255,.88);
+    background:linear-gradient(180deg,rgba(13,38,33,.55) 0%,rgba(13,38,33,.94) 38%,#0D2621 100%);backdrop-filter:blur(2px);font-size:14.5px;line-height:1.5}
+  .tc-rin > *{opacity:0;transform:translateY(14px);transition:opacity .45s var(--ease),transform .55s var(--ease)}
+  .tc-rname{display:block;font-family:"Instrument Serif",serif;font-style:italic;font-size:30px;color:#fff;margin-bottom:10px;line-height:1.05}
+  .tc-desc li::marker{color:var(--mint)}
+  .tc-desc .tx-tags span{background:rgba(255,255,255,.1);color:#fff}
+  .tc-desc .tx-note{background:rgba(247,235,211,.95)}
+  .tc-cta .btn{background:#fff;color:var(--deep)}
+  .tc-cta .btn .ico{background:var(--deep);color:#fff}
+  .tc-cta .link{color:var(--mint)}
+  .tc:hover .tc-reveal,.tc:focus-within .tc-reveal,.tc.open .tc-reveal{clip-path:inset(0 0 0 0 round var(--r-md));pointer-events:auto}
+  .tc:hover .tc-rin > *,.tc:focus-within .tc-rin > *,.tc.open .tc-rin > *{opacity:1;transform:none}
+  .tc:hover .tc-rin > :nth-child(2),.tc.open .tc-rin > :nth-child(2){transition-delay:.08s}
+  .tc:hover .tc-rin > :nth-child(3),.tc.open .tc-rin > :nth-child(3){transition-delay:.16s}
+  .tc:hover .tc-media img{transform:scale(1.06)}
+  .tc-more{display:none}
+}
+/* touch screens and phones: tap "Details & book" to open the details under the card */
+@media (hover:none),(max-width:760px){
+  .tc-reveal{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease)}
+  .tc-rin{overflow:hidden;min-height:0;font-size:15px}
+  .tc.open .tc-reveal{grid-template-rows:1fr}
+  .tc.open .tc-rin{margin-top:14px;padding:20px;border-radius:var(--r-md);background:var(--tint)}
+  .tc-desc li::marker{color:var(--primary)}
+  .tc-desc .tx-tags span{background:#fff}
+}
+@media (max-width:1080px){.tc-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.tc-grid{grid-template-columns:1fr;gap:40px}.tc-media{aspect-ratio:4/3.4}.tc-name{font-size:22px}}
