@@ -16,7 +16,7 @@ var H='<header class="site-header '+(heroDark?'on-dark':'on-light')+'"><div clas
 '<div class="lang" role="group" aria-label="Language"><button type="button" aria-pressed="false"><span>ES</span></button><button type="button" aria-pressed="true"><span>EN</span></button></div>'+
 '<button class="burger" type="button" aria-label="Open menu" aria-expanded="false" id="burger"><span></span><span></span></button></div></div></header>'+
 '<div class="mnav" id="mnav" role="dialog" aria-modal="true" aria-label="Menu"><div class="top"><a class="brand" href="index.html" aria-label="Kerala Ayurveda Institute home">'+LOGO+'</a>'+
-'<button class="burger" style="display:grid" type="button" aria-label="Close menu" id="mclose"><span style="transform:translateY(3px) rotate(45deg)"></span><span style="transform:translateY(-3px) rotate(-45deg)"></span></button></div>'+
+'<button class="burger x" type="button" aria-label="Close menu" id="mclose"><span></span><span></span></button></div>'+
 '<nav aria-label="Mobile"><a href="index.html">Home <small>01</small></a><a href="learn.html">Learn <small>02</small></a><a href="courses.html">Courses <small>03</small></a><a href="consultation.html">Care <small>04</small></a><a class="sub" href="consultation.html">Consultation</a><a class="sub" href="treatments.html">Madrid Treatments</a><a href="about.html">About Vaidya Vijay <small>05</small></a></nav>'+
 '<a class="btn btn-light" href="consultation.html">Book a Consultation<span class="ico">'+A+'</span></a></div>';
 var IG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>';
@@ -50,9 +50,15 @@ if(care&&hoverable){care.addEventListener('mouseenter',function(){cm.classList.a
 if(cb){cb.addEventListener('click',function(e){e.stopPropagation();var o=cm.classList.toggle('open');cb.setAttribute('aria-expanded',o);});
   document.addEventListener('click',function(e){if(!cm.contains(e.target)){cm.classList.remove('open');cb.setAttribute('aria-expanded','false');}});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'){cm.classList.remove('open');cb.setAttribute('aria-expanded','false');}});}
-var bg=document.getElementById('burger'), mn=document.getElementById('mnav'), mc=document.getElementById('mclose');
-if(bg){bg.addEventListener('click',function(){mn.classList.add('open');bg.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';});
-  mc.addEventListener('click',function(){mn.classList.remove('open');bg.setAttribute('aria-expanded','false');document.body.style.overflow='';});}
+var bg=document.getElementById('burger'), mn=document.getElementById('mnav'), mc=document.getElementById('mclose'), lockY=0;
+function lock(on){var b=document.body;
+  if(on){lockY=window.scrollY;document.documentElement.style.overflow='hidden';b.style.position='fixed';b.style.top=(-lockY)+'px';b.style.left='0';b.style.right='0';b.style.width='100%';}
+  else{document.documentElement.style.overflow='';b.style.position='';b.style.top='';b.style.left='';b.style.right='';b.style.width='';window.scrollTo({top:lockY,left:0,behavior:'instant'});}}
+function menu(on){mn.classList.toggle('open',on);bg.setAttribute('aria-expanded',on);lock(on);if(on)mc.focus();else bg.focus();}
+if(bg){bg.addEventListener('click',function(){menu(true);});
+  mc.addEventListener('click',function(){menu(false);});
+  mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){if(mn.classList.contains('open'))menu(false);});});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&mn.classList.contains('open'))menu(false);});}
 document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){b.parentNode.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b);});});});
 document.querySelectorAll('form').forEach(function(f){f.addEventListener('submit',function(e){e.preventDefault();});});
 
