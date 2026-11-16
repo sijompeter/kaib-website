@@ -580,3 +580,21 @@ a:hover .ph.zoom,.card:hover .ph.zoom{transform:scale(1.02)}
   .hero .orb{display:none}
   .deco circle{stroke:rgba(159,214,192,.16)}
 }
+
+/* ---------- round 5: real images in placeholders ---------- */
+.card .hook-img{min-height:0;aspect-ratio:800/623;padding:0;margin:-14px -14px 8px;border-radius:calc(var(--r-md) - 8px)}
+.card .hook-img::after{display:none}
+.card:hover .hook-img img{transform:scale(1.04)}
+.hook-img img{transition:transform .8s var(--ease)}
+.ph.illo{background:#E9F0E4}
+.ph.illo::after{display:none}
+.ph.illo > img{object-position:50% 30%}
+.ph.course-img{min-height:0;aspect-ratio:1000/907;padding:0}
+.vid > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vid::after{background:linear-gradient(180deg,rgba(13,38,33,0) 55%,rgba(13,38,33,.35))}
+.glimpse-img.photo::after{display:none}
+.glimpse-img.photo > img{object-position:50% 40%}
+@media (max-width:760px){
+  .card .hook-img{margin:-8px -8px 6px}
+  .ph.illo{min-height:0!important;aspect-ratio:1000/907}
+}
